@@ -1,0 +1,39 @@
+pipeline:
+  name: go-gin
+  identifier: gogin
+  projectIdentifier: k3d
+  orgIdentifier: default
+  tags: {}
+  properties:
+    ci:
+      codebase:
+        connectorRef: account.Github_OAuth_1723535805475
+        repoName: GHruXebia/golang-gin-realworld-example-app
+        build: <+input>
+  stages:
+    - stage:
+        name: Build Gin
+        identifier: Build_Gin
+        description: ""
+        type: CI
+        spec:
+          cloneCodebase: true
+          infrastructure:
+            type: KubernetesDirect
+            spec:
+              connectorRef: k3dmac
+              namespace: harness-ci
+              automountServiceAccountToken: true
+              nodeSelector: {}
+              os: Linux
+          execution:
+            steps:
+              - step:
+                  type: Run
+                  name: Test
+                  identifier: Test
+                  spec:
+                    connectorRef: account.harnessImage
+                    image: golang:latest
+                    shell: Sh
+                    command: go test ./... -cover
