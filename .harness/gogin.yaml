@@ -36,7 +36,10 @@ pipeline:
                     connectorRef: account.harnessImage
                     image: golang:1.23.0-bullseye
                     shell: Sh
-                    command: go mod tidy && go build ./...
+                    command: |-
+                      go mod tidy
+                      go build ./...
+                      echo "Done"
                     resources:
                       limits:
                         memory: 1000Mi
