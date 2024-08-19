@@ -37,3 +37,7 @@ pipeline:
                     image: golang:1.23.0-bullseye
                     shell: Sh
                     command: go mod tidy && go build ./...
+                    resources:
+                      limits:
+                        memory: 1000Mi
+                        cpu: "1"
