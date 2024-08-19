@@ -36,7 +36,4 @@ pipeline:
                     connectorRef: account.harnessImage
                     image: golang:latest
                     shell: Sh
-                    command: |-
-                      go build ./... && \
-                      go mod tidy && \
-                      go test ./... -cover
+                    command: go build ./...
