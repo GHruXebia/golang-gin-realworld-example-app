@@ -34,6 +34,6 @@ pipeline:
                   identifier: Test
                   spec:
                     connectorRef: account.harnessImage
-                    image: golang:latest
+                    image: golang:1.23.0-bullseye
                     shell: Sh
                     command: go build ./...
